@@ -1,0 +1,33 @@
+name: Upstream Ponytail
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "43 6 * * 1"
+
+permissions:
+    contents: read
+    issues: write
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  persist-credentials: false
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22.19.0"
+            - name: Compare with upstream
+              id: check
+              run: npm run check:upstream
+              continue-on-error: true
+            - name: Open a review issue
+              if: steps.check.outcome == 'failure'
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  gh issue list --search "Upstream Ponytail changed in:title" --state open --json number --jq length | grep -qx 0 || exit 0
+                  gh issue create --title "Upstream Ponytail changed" --body "Review https://github.com/DietrichGebert/ponytail/commits/main, review and run npm run sync:upstream, then commit. Nothing updates automatically."

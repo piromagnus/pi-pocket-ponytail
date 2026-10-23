@@ -1,0 +1,40 @@
+name: Pi Pocket compatibility
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+    workflow_dispatch:
+    schedule:
+        - cron: "17 6 * * 1"
+
+permissions:
+    contents: read
+
+jobs:
+    compatibility:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  persist-credentials: false
+            - uses: actions/checkout@v4
+              with:
+                  repository: TannerMidd/pi-pocket
+                  ref: main
+                  path: pi-pocket
+                  persist-credentials: false
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22.19.0"
+            - name: Install Pi Pocket dependencies
+              run: npm ci --prefix pi-pocket
+            - name: Use the host dependencies
+              run: ln -s "$GITHUB_WORKSPACE/pi-pocket/node_modules" node_modules
+            - name: Type-check and test against Pi Pocket main
+              env:
+                  PI_POCKET_REPO: ${{ github.workspace }}/pi-pocket
+              run: |
+                  npm run check
+                  npm test

@@ -6,7 +6,7 @@ export default function setup(pocket) {
     pocket.sheet({
         id: "mode",
         title: "Ponytail",
-        component: function PonytailMode({ pocket: app, close }) {
+        component: function PonytailMode({ pocket: app }) {
             const { html, useEffect, useState } = app;
             const [mode, setMode] = useState(null);
             const [saving, setSaving] = useState(false);
@@ -48,8 +48,7 @@ export default function setup(pocket) {
                                         { method: "PUT" },
                                     );
                                     setMode(value);
-                                    close();
-                                } catch (e) {
+                                        } catch (e) {
                                     setError(e.message);
                                 } finally {
                                     setSaving(false);

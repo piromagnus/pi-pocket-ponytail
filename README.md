@@ -15,6 +15,12 @@ The session menu shows **Ponytail** with the current mode on the right, for exam
 
 Use `/ponytail-mode [off|lite|full|ultra]` without a model call, or ask Pi to use the `ponytail_mode` tool. The earlier custom `/ponytail` command and duplicate `ponytail` tool are not registered: public Pi Pocket extension commands require a hyphen.
 
+## Attribution
+
+This is an unofficial Pi Pocket wrapper of [Ponytail](https://github.com/DietrichGebert/ponytail) by DietrichGebert (MIT). The Ponytail idea, modes, and guidance are theirs: this repository only adapts them to Pi Pocket (session menu, durable setting, `/ponytail-mode`, verification reminder). For other tools, install the original. [`LICENSE`](LICENSE) keeps both copyright notices.
+
+`upstream.json` records the upstream commit this was adapted from. `node scripts/check-upstream.mjs` checks whether upstream guidance or its license changed (exit 2 if so). Nothing is copied or updated automatically: review the change, adapt `rules()`, then run `node scripts/check-upstream.mjs --pin`.
+
 ## Updates
 
 The source of truth is [this repository’s `main` branch](https://github.com/piromagnus/pi-pocket-ponytail/tree/main). Updating Pi Pocket does not update a manually copied extension.

@@ -11,7 +11,8 @@
     "type": "module",
     "scripts": {
         "check": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --allowImportingTsExtensions --strict ponytail.ts ponytail.test.ts ponytail-ui.test.ts",
-        "test": "node --test *.test.ts"
+        "test": "node --test *.test.ts",
+        "upstream": "node scripts/check-upstream.mjs"
     },
     "devDependencies": {
         "@earendil-works/pi-ai": "1.3.0",

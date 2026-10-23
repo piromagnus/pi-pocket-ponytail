@@ -6,7 +6,7 @@ A standalone, opt-in [Pi Pocket](https://github.com/TannerMidd/pi-pocket) extens
 
 Copy `ponytail.ts` and `ponytail.js` into the data folder's `extensions/` directory, then enable **ponytail** in **Menu → Extensions**. No core patch, credentials, or additional runtime dependency is required. The source is MIT licensed.
 
-Open a session's menu and choose **Ponytail** to select **off**, **lite**, **full**, or **ultra**. Each session stores its own setting in the extension's durable document. New sessions default to **full**; forks inherit their parent's setting. Settings survive restarts.
+The session menu shows **Ponytail** with the current mode on the right, for example **full**. Choose it to select **off**, **lite**, **full**, or **ultra**. Each session stores its own setting in the extension's durable document. New sessions default to **full**; forks inherit their parent's setting. Settings survive restarts.
 
 - **off**: no Ponytail guidance or reminders.
 - **lite**: small changes with clarity first.

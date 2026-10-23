@@ -106,6 +106,8 @@ export default function createPonytail(_host: unknown, web: any) {
             await request.commit(async (tx: any) => {
                 (await tx.doc(SessionDoc, request.conversation.id)).mode = request.body.mode;
             });
+            web.send("changed");
+
             return { mode: request.body.mode };
         },
         { conversation: "conversation", access: "steer" },
@@ -125,6 +127,8 @@ export default function createPonytail(_host: unknown, web: any) {
             await ctx.commit(async (tx: any) => {
                 (await tx.doc(SessionDoc, ctx.conversationId)).mode = mode;
             });
+            web.send("changed");
+
             return { type: "toast", level: "info", message: `Ponytail: ${mode}` };
         },
     });
@@ -143,6 +147,8 @@ export default function createPonytail(_host: unknown, web: any) {
                 await api.commit(async (tx: any) => {
                     (await tx.doc(SessionDoc, api.conversationId)).mode = mode;
                 }, context);
+                web.send("changed");
+
                 return { output: [{ type: "text" as const, text: `Ponytail session: ${mode}.` }] };
             }
             const current = await api.snapshot(SessionDoc, api.conversationId, context);

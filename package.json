@@ -1,6 +1,6 @@
 {
     "name": "pi-pocket-ponytail",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Standalone Ponytail modes and request-local verification reminders for Pi Pocket",
     "private": true,
     "license": "MIT",
@@ -10,8 +10,8 @@
     },
     "type": "module",
     "scripts": {
-        "check": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --allowImportingTsExtensions --strict ponytail.ts ponytail.test.ts",
-        "test": "node --test ponytail.test.ts"
+        "check": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --allowImportingTsExtensions --strict ponytail.ts ponytail.test.ts ponytail-ui.test.ts",
+        "test": "node --test *.test.ts"
     },
     "devDependencies": {
         "@earendil-works/pi-ai": "1.3.0",

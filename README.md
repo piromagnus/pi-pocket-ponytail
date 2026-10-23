@@ -4,7 +4,7 @@ A standalone, opt-in [Pi Pocket](https://github.com/TannerMidd/pi-pocket) extens
 
 ## Install
 
-Copy `ponytail.ts` and `ponytail.js` into the data folder's `extensions/` directory, then enable **ponytail** in **Menu → Extensions**. No core patch, credentials, or additional runtime dependency is required. The source is MIT licensed.
+Copy `ponytail.ts` and `ponytail.js` into the data folder's `extensions/` directory, then enable **ponytail** in **Menu → Extensions**. No core patch, credentials, or additional runtime dependency is required. The source is MIT licensed; `LICENSE` keeps both copyright notices.
 
 The session menu shows **Ponytail** with the current mode on the right, for example **full**. Choose it to select **off**, **lite**, **full**, or **ultra**. Each session stores its own setting in the extension's durable document. New sessions default to **full**; forks inherit their parent's setting. Settings survive restarts.
 
@@ -19,7 +19,7 @@ Use `/ponytail-mode [off|lite|full|ultra]` without a model call, or ask Pi to us
 
 This is an unofficial Pi Pocket wrapper of [Ponytail](https://github.com/DietrichGebert/ponytail) by DietrichGebert (MIT). The Ponytail idea, modes, and guidance are theirs: this repository only adapts them to Pi Pocket (session menu, durable setting, `/ponytail-mode`, verification reminder). For other tools, install the original. [`LICENSE`](LICENSE) keeps both copyright notices.
 
-`upstream.json` records the upstream commit this was adapted from. `node scripts/check-upstream.mjs` checks whether upstream guidance or its license changed (exit 2 if so). Nothing is copied or updated automatically: review the change, adapt `rules()`, then run `node scripts/check-upstream.mjs --pin`.
+`upstream.json` records the upstream commit this was adapted from, and `ponytail.ts` embeds the filtered upstream prompts in a generated `UPSTREAM_DATA` block. `npm run check:upstream` reports whether upstream guidance or its license changed (exit 2 if so); it downloads text only and never runs upstream code. After review, `npm run sync:upstream` rewrites the generated block and `upstream.json`; commit the result. Nothing updates automatically.
 
 ## Updates
 
